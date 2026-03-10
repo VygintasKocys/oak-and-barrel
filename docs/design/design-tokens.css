@@ -1,0 +1,378 @@
+/* ============================================================
+   OAK & BARREL — Design Tokens
+   A warm, refined restaurant design system inspired by
+   aged wood, amber spirits, and slow-cooked comfort.
+   ============================================================ */
+
+:root {
+
+  /* ——————————————————————————————————————————————
+     COLOR SYSTEM
+     ——————————————————————————————————————————————
+     Named after the textures and ingredients of the brand:
+     oak (warm neutrals), barrel (amber golds),
+     char (dark tones), cream (light surfaces).
+  */
+
+  /* — Primary: Barrel Gold —
+     The signature amber. Used for CTAs, highlights,
+     active states, and brand moments. */
+  --color-barrel-50:  #FFF7E6;
+  --color-barrel-100: #FFECC4;
+  --color-barrel-200: #FFDB8A;
+  --color-barrel-300: #F5C45C;
+  --color-barrel-400: #E8A435;
+  --color-barrel-500: #D4891A;
+  --color-barrel-600: #B56E0F;
+  --color-barrel-700: #8F5409;
+  --color-barrel-800: #6B3E06;
+  --color-barrel-900: #4A2A04;
+
+  /* — Neutral: Oak —
+     Warm neutrals with a faint golden undertone.
+     The backbone of all text, borders, and surfaces. */
+  --color-oak-50:  #FDFBF7;
+  --color-oak-100: #F9F4EB;
+  --color-oak-150: #F5EDE0;
+  --color-oak-200: #EDE3D3;
+  --color-oak-300: #DDD0B8;
+  --color-oak-400: #C4B495;
+  --color-oak-500: #A89474;
+  --color-oak-600: #8A7558;
+  --color-oak-700: #6B5940;
+  --color-oak-800: #4A3D2C;
+  --color-oak-900: #2C2418;
+  --color-oak-950: #1A150E;
+
+  /* — Accent: Sage —
+     A muted herbal green for secondary accents,
+     tags, success states, and fresh counterpoints. */
+  --color-sage-50:  #F2F7F2;
+  --color-sage-100: #E0ECE0;
+  --color-sage-200: #C1D9C1;
+  --color-sage-300: #97BC97;
+  --color-sage-400: #6E9E6E;
+  --color-sage-500: #527D52;
+  --color-sage-600: #3F613F;
+  --color-sage-700: #2F4A2F;
+  --color-sage-800: #203420;
+  --color-sage-900: #132013;
+
+  /* — Accent: Ember —
+     A warm terracotta-red for alerts, spicy indicators,
+     and high-energy moments. */
+  --color-ember-50:  #FFF5F0;
+  --color-ember-100: #FFE4D6;
+  --color-ember-200: #FFC4A8;
+  --color-ember-300: #F49A6E;
+  --color-ember-400: #E07040;
+  --color-ember-500: #C4521F;
+  --color-ember-600: #9C3E15;
+  --color-ember-700: #742E0F;
+  --color-ember-800: #50200A;
+  --color-ember-900: #301306;
+
+  /* — Surface & Background Semantics — */
+  --surface-primary:    var(--color-oak-50);      /* Main page background */
+  --surface-secondary:  var(--color-oak-100);     /* Cards, sections */
+  --surface-tertiary:   var(--color-oak-150);     /* Nested cards, insets */
+  --surface-elevated:   #FFFFFF;                  /* Modals, dropdowns, popups */
+  --surface-overlay:    rgba(26, 21, 14, 0.60);   /* Backdrops, dimming layers */
+  --surface-brand:      var(--color-barrel-50);   /* Brand-tinted backgrounds */
+  --surface-inverse:    var(--color-oak-900);     /* Dark sections (footer, CTA bands) */
+
+  /* — Text Semantics — */
+  --text-primary:       var(--color-oak-950);     /* Headings, high-emphasis */
+  --text-secondary:     var(--color-oak-700);     /* Body copy, descriptions */
+  --text-tertiary:      var(--color-oak-500);     /* Captions, meta, timestamps */
+  --text-disabled:      var(--color-oak-400);     /* Disabled labels */
+  --text-on-brand:      var(--color-oak-950);     /* Text on barrel-gold backgrounds */
+  --text-on-inverse:    var(--color-oak-100);     /* Text on dark surfaces */
+  --text-link:          var(--color-barrel-600);  /* Hyperlinks */
+  --text-link-hover:    var(--color-barrel-700);  /* Hovered links */
+
+  /* — Border Semantics — */
+  --border-default:     var(--color-oak-200);
+  --border-subtle:      var(--color-oak-150);
+  --border-strong:      var(--color-oak-400);
+  --border-brand:       var(--color-barrel-300);
+  --border-focus:       var(--color-barrel-400);
+
+  /* — Status Colors — */
+  --status-success:     var(--color-sage-500);
+  --status-success-bg:  var(--color-sage-50);
+  --status-warning:     var(--color-barrel-500);
+  --status-warning-bg:  var(--color-barrel-50);
+  --status-error:       var(--color-ember-500);
+  --status-error-bg:    var(--color-ember-50);
+  --status-info:        #4A7FB5;
+  --status-info-bg:     #EEF4FA;
+
+
+  /* ——————————————————————————————————————————————
+     TYPOGRAPHY
+     ——————————————————————————————————————————————
+     Display/Headings: "Playfair Display" — an elegant
+     high-contrast serif with old-style flavor.
+     Body: "DM Sans" — a geometric sans with warmth
+     and excellent legibility at small sizes.
+     Accent/Mono: "JetBrains Mono" — for prices, codes.
+  */
+
+  /* Font Families */
+  --font-display:  'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-body:     'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* Font Sizes — modular scale (1.250 ratio, base 16px) */
+  --text-xs:    0.694rem;    /* 11.1px — fine print */
+  --text-sm:    0.833rem;    /* 13.3px — captions */
+  --text-base:  1rem;        /* 16px   — body */
+  --text-md:    1.125rem;    /* 18px   — lead body */
+  --text-lg:    1.25rem;     /* 20px   — large body / small heading */
+  --text-xl:    1.563rem;    /* 25px   — h5 */
+  --text-2xl:   1.953rem;    /* 31.3px — h4 */
+  --text-3xl:   2.441rem;    /* 39px   — h3 */
+  --text-4xl:   3.052rem;    /* 48.8px — h2 */
+  --text-5xl:   3.815rem;    /* 61px   — h1 */
+  --text-6xl:   4.768rem;    /* 76.3px — display */
+  --text-7xl:   5.96rem;     /* 95.4px — hero */
+
+  /* Font Weights */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-black:     900;
+
+  /* Line Heights */
+  --leading-none:    1;
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+  --leading-loose:   2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.025em;
+  --tracking-wider:   0.05em;
+  --tracking-widest:  0.1em;
+
+
+  /* ——————————————————————————————————————————————
+     SPACING
+     ——————————————————————————————————————————————
+     4px base grid. Use multiples for rhythm.
+  */
+  --space-0:    0;
+  --space-1:    0.25rem;   /* 4px */
+  --space-2:    0.5rem;    /* 8px */
+  --space-3:    0.75rem;   /* 12px */
+  --space-4:    1rem;      /* 16px */
+  --space-5:    1.25rem;   /* 20px */
+  --space-6:    1.5rem;    /* 24px */
+  --space-8:    2rem;      /* 32px */
+  --space-10:   2.5rem;    /* 40px */
+  --space-12:   3rem;      /* 48px */
+  --space-16:   4rem;      /* 64px */
+  --space-20:   5rem;      /* 80px */
+  --space-24:   6rem;      /* 96px */
+  --space-32:   8rem;      /* 128px */
+  --space-40:   10rem;     /* 160px */
+  --space-48:   12rem;     /* 192px */
+
+  /* Section-level spacing */
+  --section-gap-sm:  var(--space-16);    /* 64px — compact sections */
+  --section-gap-md:  var(--space-24);    /* 96px — default section gaps */
+  --section-gap-lg:  var(--space-32);    /* 128px — hero, dramatic gaps */
+
+
+  /* ——————————————————————————————————————————————
+     LAYOUT & BREAKPOINTS
+     ——————————————————————————————————————————————
+  */
+  --container-xs:   28rem;    /* 448px  — narrow text column */
+  --container-sm:   40rem;    /* 640px  — small content */
+  --container-md:   48rem;    /* 768px  — default content */
+  --container-lg:   64rem;    /* 1024px — wide content */
+  --container-xl:   80rem;    /* 1280px — max-width container */
+  --container-2xl:  90rem;    /* 1440px — full-bleed sections */
+
+  --gutter:         var(--space-6);      /* 24px — column gutters */
+  --gutter-lg:      var(--space-8);      /* 32px — wide gutters */
+  --page-margin:    var(--space-6);      /* 24px — edge padding */
+  --page-margin-lg: var(--space-16);     /* 64px — desktop edge padding */
+
+  /* Breakpoints (for documentation — use in @media queries) */
+  /* --bp-sm:   480px   — Mobile landscape */
+  /* --bp-md:   768px   — Tablet portrait */
+  /* --bp-lg:   1024px  — Tablet landscape / small desktop */
+  /* --bp-xl:   1280px  — Desktop */
+  /* --bp-2xl:  1536px  — Large desktop */
+
+
+  /* ——————————————————————————————————————————————
+     BORDERS & RADII
+     ——————————————————————————————————————————————
+     Soft and rounded, reflecting the warm brand.
+  */
+  --radius-none:   0;
+  --radius-sm:     0.375rem;   /* 6px  — subtle rounding */
+  --radius-md:     0.625rem;   /* 10px — inputs, small cards */
+  --radius-lg:     1rem;       /* 16px — cards, panels */
+  --radius-xl:     1.5rem;     /* 24px — large cards, images */
+  --radius-2xl:    2rem;       /* 32px — hero images, CTAs */
+  --radius-full:   9999px;     /* Pill shapes, avatars */
+
+  --border-thin:   1px solid var(--border-default);
+  --border-medium: 2px solid var(--border-default);
+
+
+  /* ——————————————————————————————————————————————
+     SHADOWS & ELEVATION
+     ——————————————————————————————————————————————
+     Warm-tinted shadows to maintain the amber feel.
+  */
+  --shadow-xs:     0 1px 2px rgba(42, 30, 12, 0.05);
+  --shadow-sm:     0 2px 4px rgba(42, 30, 12, 0.06),
+                   0 1px 2px rgba(42, 30, 12, 0.04);
+  --shadow-md:     0 4px 12px rgba(42, 30, 12, 0.08),
+                   0 2px 4px rgba(42, 30, 12, 0.04);
+  --shadow-lg:     0 8px 24px rgba(42, 30, 12, 0.10),
+                   0 4px 8px rgba(42, 30, 12, 0.05);
+  --shadow-xl:     0 16px 48px rgba(42, 30, 12, 0.12),
+                   0 8px 16px rgba(42, 30, 12, 0.06);
+  --shadow-2xl:    0 24px 64px rgba(42, 30, 12, 0.16),
+                   0 12px 24px rgba(42, 30, 12, 0.08);
+
+  /* Inner shadows for inset elements (inputs, wells) */
+  --shadow-inner:  inset 0 2px 4px rgba(42, 30, 12, 0.06);
+
+  /* Glow for focused/active brand elements */
+  --shadow-brand:  0 4px 16px rgba(232, 164, 53, 0.25),
+                   0 2px 6px rgba(232, 164, 53, 0.15);
+
+
+  /* ——————————————————————————————————————————————
+     MOTION & ANIMATION
+     ——————————————————————————————————————————————
+     Ease curves inspired by organic, natural movement.
+  */
+
+  /* Durations */
+  --duration-instant:   75ms;
+  --duration-fast:      150ms;
+  --duration-normal:    250ms;
+  --duration-slow:      400ms;
+  --duration-slower:    600ms;
+  --duration-entrance:  500ms;
+
+  /* Easing */
+  --ease-default:       cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in:            cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-out:           cubic-bezier(0, 0.55, 0.45, 1);
+  --ease-in-out:        cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce:        cubic-bezier(0.34, 1.8, 0.64, 1);
+
+  /* Composed transitions */
+  --transition-colors:  color var(--duration-fast) var(--ease-default),
+                        background-color var(--duration-fast) var(--ease-default),
+                        border-color var(--duration-fast) var(--ease-default);
+  --transition-shadow:  box-shadow var(--duration-normal) var(--ease-default);
+  --transition-transform: transform var(--duration-normal) var(--ease-out);
+  --transition-all:     all var(--duration-normal) var(--ease-default);
+
+
+  /* ——————————————————————————————————————————————
+     Z-INDEX SCALE
+     ——————————————————————————————————————————————
+  */
+  --z-below:      -1;
+  --z-base:       0;
+  --z-raised:     10;
+  --z-dropdown:   100;
+  --z-sticky:     200;
+  --z-overlay:    300;
+  --z-modal:      400;
+  --z-popover:    500;
+  --z-toast:      600;
+  --z-tooltip:    700;
+  --z-max:        9999;
+
+
+  /* ——————————————————————————————————————————————
+     COMPONENT-SPECIFIC TOKENS
+     ——————————————————————————————————————————————
+  */
+
+  /* Navigation */
+  --nav-height:           4.5rem;       /* 72px */
+  --nav-height-scrolled:  3.75rem;      /* 60px */
+  --nav-bg:               rgba(253, 251, 247, 0.92);
+  --nav-blur:             12px;
+
+  /* Buttons */
+  --btn-height-sm:   2.25rem;    /* 36px */
+  --btn-height-md:   2.75rem;    /* 44px */
+  --btn-height-lg:   3.25rem;    /* 52px */
+  --btn-padding-x:   var(--space-6);
+  --btn-radius:      var(--radius-full);
+  --btn-font-weight: var(--weight-semibold);
+
+  /* Cards */
+  --card-padding:    var(--space-6);
+  --card-radius:     var(--radius-xl);
+  --card-shadow:     var(--shadow-sm);
+  --card-shadow-hover: var(--shadow-lg);
+
+  /* Inputs */
+  --input-height:    var(--btn-height-md);
+  --input-padding-x: var(--space-4);
+  --input-radius:    var(--radius-md);
+  --input-border:    var(--border-default);
+  --input-bg:        var(--surface-elevated);
+
+  /* Avatars / Chef portraits */
+  --avatar-sm:    2.5rem;      /* 40px */
+  --avatar-md:    3.5rem;      /* 56px */
+  --avatar-lg:    5rem;        /* 80px */
+  --avatar-xl:    7.5rem;      /* 120px */
+  --avatar-2xl:   10rem;       /* 160px */
+
+  /* Rating stars */
+  --star-size:    1.125rem;    /* 18px */
+  --star-gap:     0.125rem;    /* 2px */
+  --star-filled:  var(--color-barrel-400);
+  --star-empty:   var(--color-oak-300);
+}
+
+
+/* ——————————————————————————————————————————————
+   DARK MODE OVERRIDES
+   (for potential future dark-theme sections
+   like the footer or CTA bands)
+   ——————————————————————————————————————————————
+*/
+[data-theme="dark"],
+.theme-dark {
+  --surface-primary:    var(--color-oak-950);
+  --surface-secondary:  var(--color-oak-900);
+  --surface-tertiary:   var(--color-oak-800);
+  --surface-elevated:   var(--color-oak-900);
+
+  --text-primary:       var(--color-oak-100);
+  --text-secondary:     var(--color-oak-300);
+  --text-tertiary:      var(--color-oak-500);
+
+  --border-default:     var(--color-oak-700);
+  --border-subtle:      var(--color-oak-800);
+
+  --shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.20);
+  --shadow-sm:     0 2px 4px rgba(0, 0, 0, 0.24);
+  --shadow-md:     0 4px 12px rgba(0, 0, 0, 0.30);
+  --shadow-lg:     0 8px 24px rgba(0, 0, 0, 0.35);
+}

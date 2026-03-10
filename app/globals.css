@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* ============================================================
+   OAK & BARREL — Design Tokens
+   ============================================================ */
+
+:root {
+  /* — Primary: Barrel Gold — */
+  --color-barrel-50:  #FFF7E6;
+  --color-barrel-100: #FFECC4;
+  --color-barrel-200: #FFDB8A;
+  --color-barrel-300: #F5C45C;
+  --color-barrel-400: #E8A435;
+  --color-barrel-500: #D4891A;
+  --color-barrel-600: #B56E0F;
+  --color-barrel-700: #8F5409;
+  --color-barrel-800: #6B3E06;
+  --color-barrel-900: #4A2A04;
+
+  /* — Neutral: Oak — */
+  --color-oak-50:  #FDFBF7;
+  --color-oak-100: #F9F4EB;
+  --color-oak-150: #F5EDE0;
+  --color-oak-200: #EDE3D3;
+  --color-oak-300: #DDD0B8;
+  --color-oak-400: #C4B495;
+  --color-oak-500: #A89474;
+  --color-oak-600: #8A7558;
+  --color-oak-700: #6B5940;
+  --color-oak-800: #4A3D2C;
+  --color-oak-900: #2C2418;
+  --color-oak-950: #1A150E;
+
+  /* — Accent: Sage — */
+  --color-sage-50:  #F2F7F2;
+  --color-sage-100: #E0ECE0;
+  --color-sage-200: #C1D9C1;
+  --color-sage-300: #97BC97;
+  --color-sage-400: #6E9E6E;
+  --color-sage-500: #527D52;
+  --color-sage-600: #3F613F;
+  --color-sage-700: #2F4A2F;
+
+  /* — Accent: Ember — */
+  --color-ember-50:  #FFF5F0;
+  --color-ember-100: #FFE4D6;
+  --color-ember-200: #FFC4A8;
+  --color-ember-300: #F49A6E;
+  --color-ember-400: #E07040;
+  --color-ember-500: #C4521F;
+  --color-ember-600: #9C3E15;
+  --color-ember-700: #742E0F;
+
+  /* — Surfaces — */
+  --surface-primary:    var(--color-oak-50);
+  --surface-secondary:  var(--color-oak-100);
+  --surface-tertiary:   var(--color-oak-150);
+  --surface-elevated:   #FFFFFF;
+  --surface-overlay:    rgba(26, 21, 14, 0.60);
+  --surface-brand:      var(--color-barrel-50);
+  --surface-inverse:    var(--color-oak-900);
+
+  /* — Text — */
+  --text-primary:       var(--color-oak-950);
+  --text-secondary:     var(--color-oak-700);
+  --text-tertiary:      var(--color-oak-500);
+  --text-disabled:      var(--color-oak-400);
+  --text-on-brand:      var(--color-oak-950);
+  --text-on-inverse:    var(--color-oak-100);
+  --text-link:          var(--color-barrel-600);
+  --text-link-hover:    var(--color-barrel-700);
+
+  /* — Borders — */
+  --border-default:     var(--color-oak-200);
+  --border-subtle:      var(--color-oak-150);
+  --border-strong:      var(--color-oak-400);
+  --border-brand:       var(--color-barrel-300);
+  --border-focus:       var(--color-barrel-400);
+
+  /* — Shadows — */
+  --shadow-xs:     0 1px 2px rgba(42, 30, 12, 0.05);
+  --shadow-sm:     0 2px 4px rgba(42, 30, 12, 0.06), 0 1px 2px rgba(42, 30, 12, 0.04);
+  --shadow-md:     0 4px 12px rgba(42, 30, 12, 0.08), 0 2px 4px rgba(42, 30, 12, 0.04);
+  --shadow-lg:     0 8px 24px rgba(42, 30, 12, 0.10), 0 4px 8px rgba(42, 30, 12, 0.05);
+  --shadow-xl:     0 16px 48px rgba(42, 30, 12, 0.12), 0 8px 16px rgba(42, 30, 12, 0.06);
+  --shadow-2xl:    0 24px 64px rgba(42, 30, 12, 0.16), 0 12px 24px rgba(42, 30, 12, 0.08);
+  --shadow-inner:  inset 0 2px 4px rgba(42, 30, 12, 0.06);
+  --shadow-brand:  0 4px 16px rgba(232, 164, 53, 0.25), 0 2px 6px rgba(232, 164, 53, 0.15);
+
+  /* — Typography — */
+  --font-display:  var(--font-playfair), 'Georgia', 'Times New Roman', serif;
+  --font-body:     var(--font-dm-sans), 'Segoe UI', system-ui, sans-serif;
+  --font-mono-face: var(--font-jetbrains), 'Consolas', monospace;
+
+  /* — Motion — */
+  --duration-fast:      150ms;
+  --duration-normal:    250ms;
+  --duration-slow:      400ms;
+  --duration-entrance:  500ms;
+  --ease-default:       cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out:           cubic-bezier(0, 0.55, 0.45, 1);
+  --ease-in-out:        cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* — Navigation — */
+  --nav-height:           4.5rem;
+  --nav-height-scrolled:  3.75rem;
+  --nav-bg:               rgba(253, 251, 247, 0.92);
+
+  /* — Z-index — */
+  --z-sticky:     200;
+  --z-overlay:    300;
+  --z-modal:      400;
+}
+
+/* Dark theme overrides for footer/CTA sections */
+[data-theme="dark"],
+.theme-dark {
+  --surface-primary:    var(--color-oak-950);
+  --surface-secondary:  var(--color-oak-900);
+  --surface-tertiary:   var(--color-oak-800);
+  --surface-elevated:   var(--color-oak-900);
+  --text-primary:       var(--color-oak-100);
+  --text-secondary:     var(--color-oak-300);
+  --text-tertiary:      var(--color-oak-500);
+  --border-default:     var(--color-oak-700);
+  --border-subtle:      var(--color-oak-800);
+}
+
+@theme inline {
+  /* Colors: Barrel */
+  --color-barrel-50:  #FFF7E6;
+  --color-barrel-100: #FFECC4;
+  --color-barrel-200: #FFDB8A;
+  --color-barrel-300: #F5C45C;
+  --color-barrel-400: #E8A435;
+  --color-barrel-500: #D4891A;
+  --color-barrel-600: #B56E0F;
+  --color-barrel-700: #8F5409;
+  --color-barrel-800: #6B3E06;
+  --color-barrel-900: #4A2A04;
+
+  /* Colors: Oak */
+  --color-oak-50:  #FDFBF7;
+  --color-oak-100: #F9F4EB;
+  --color-oak-150: #F5EDE0;
+  --color-oak-200: #EDE3D3;
+  --color-oak-300: #DDD0B8;
+  --color-oak-400: #C4B495;
+  --color-oak-500: #A89474;
+  --color-oak-600: #8A7558;
+  --color-oak-700: #6B5940;
+  --color-oak-800: #4A3D2C;
+  --color-oak-900: #2C2418;
+  --color-oak-950: #1A150E;
+
+  /* Colors: Sage */
+  --color-sage-50:  #F2F7F2;
+  --color-sage-100: #E0ECE0;
+  --color-sage-200: #C1D9C1;
+  --color-sage-300: #97BC97;
+  --color-sage-400: #6E9E6E;
+  --color-sage-500: #527D52;
+  --color-sage-600: #3F613F;
+  --color-sage-700: #2F4A2F;
+
+  /* Colors: Ember */
+  --color-ember-50:  #FFF5F0;
+  --color-ember-100: #FFE4D6;
+  --color-ember-200: #FFC4A8;
+  --color-ember-300: #F49A6E;
+  --color-ember-400: #E07040;
+  --color-ember-500: #C4521F;
+  --color-ember-600: #9C3E15;
+  --color-ember-700: #742E0F;
+
+  /* Fonts */
+  --font-display: var(--font-playfair), 'Georgia', 'Times New Roman', serif;
+  --font-body: var(--font-dm-sans), 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), 'Consolas', monospace;
+}
+
+body {
+  background-color: var(--color-oak-50);
+  color: var(--color-oak-950);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

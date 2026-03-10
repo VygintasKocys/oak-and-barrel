@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oak & Barrel — Design System Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-tokens.css">
+<style>
+  /* ============================================================
+     DESIGN SYSTEM PREVIEW — Live Reference
+     ============================================================ */
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--text-primary);
+    background: var(--surface-primary);
+  }
+
+  /* — Preview Chrome — */
+  .preview-nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: var(--space-4) var(--space-8);
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .preview-nav h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-right: auto;
+  }
+  .preview-nav h1 span { color: var(--color-barrel-400); }
+  .preview-nav a {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .preview-nav a:hover { color: var(--color-barrel-500); }
+
+  .preview-section {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-8);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .preview-section:last-child { border-bottom: none; }
+
+  .preview-label {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-8);
+  }
+
+  .preview-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .preview-desc {
+    color: var(--text-secondary);
+    max-width: 55ch;
+    margin-bottom: var(--space-10);
+  }
+
+  .preview-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .preview-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  /* ============================================================
+     1. COLOR SWATCHES
+     ============================================================ */
+  .swatch-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+  .swatch-group-title {
+    width: 100%;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-1);
+  }
+  .swatch {
+    width: 72px;
+    text-align: center;
+  }
+  .swatch-color {
+    width: 72px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.06);
+    margin-bottom: var(--space-1);
+  }
+  .swatch-label {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    color: var(--text-tertiary);
+    line-height: 1.3;
+  }
+
+  /* ============================================================
+     2. TYPOGRAPHY SPECIMENS
+     ============================================================ */
+  .type-specimen { margin-bottom: var(--space-8); }
+  .type-specimen .meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+  .type-display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-6xl);
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--text-primary);
+  }
+  .type-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+  .type-h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+  .type-h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+  }
+  .type-h4 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+  }
+  .type-h5 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .type-body { max-width: 36rem; }
+  .type-price {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: var(--text-lg);
+    color: var(--color-barrel-600);
+  }
+
+  /* ============================================================
+     3. BUTTONS
+     ============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-weight: var(--btn-font-weight);
+    font-size: var(--text-base);
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--btn-radius);
+    height: var(--btn-height-md);
+    padding: 0 var(--btn-padding-x);
+    transition: var(--transition-colors), var(--transition-shadow), var(--transition-transform);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--color-barrel-400);
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: var(--color-barrel-400);
+    color: var(--text-on-brand);
+    box-shadow: var(--shadow-xs);
+  }
+  .btn-primary:hover {
+    background: var(--color-barrel-500);
+    box-shadow: var(--shadow-brand);
+  }
+  .btn-primary:active {
+    background: var(--color-barrel-600);
+    box-shadow: none;
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-barrel-600);
+    border: 2px solid var(--color-barrel-400);
+  }
+  .btn-secondary:hover {
+    background: var(--color-barrel-50);
+    border-color: var(--color-barrel-500);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-link);
+    padding: 0 var(--space-3);
+  }
+  .btn-ghost:hover { background: var(--color-barrel-50); }
+
+  .btn-sm {
+    height: var(--btn-height-sm);
+    font-size: var(--text-sm);
+    padding: 0 var(--space-4);
+  }
+  .btn-lg {
+    height: var(--btn-height-lg);
+    font-size: var(--text-md);
+    padding: 0 var(--space-8);
+  }
+
+  .btn-disabled {
+    background: var(--color-oak-200);
+    color: var(--text-disabled);
+    box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .btn-icon {
+    width: var(--btn-height-md);
+    padding: 0;
+  }
+
+  /* ============================================================
+     4. CARDS
+     ============================================================ */
+  .card {
+    background: var(--surface-elevated);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: box-shadow var(--duration-normal) var(--ease-out),
+                transform var(--duration-normal) var(--ease-out);
+  }
+  .card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Dish Card */
+  .dish-card { cursor: pointer; }
+  .dish-card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    background: var(--surface-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-oak-400);
+    font-size: var(--text-3xl);
+  }
+  .dish-card-body {
+    padding: var(--card-padding);
+  }
+  .dish-card-name {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dish-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-2);
+  }
+  .dish-card-price {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: var(--text-md);
+    color: var(--color-barrel-600);
+    margin-top: var(--space-2);
+  }
+
+  /* Chef Card */
+  .chef-card {
+    text-align: center;
+    padding: var(--space-8);
+  }
+  .chef-card:hover .chef-avatar {
+    transform: scale(1.05);
+  }
+  .chef-avatar {
+    width: var(--avatar-2xl);
+    height: var(--avatar-2xl);
+    border-radius: var(--radius-full);
+    border: 4px solid var(--color-barrel-200);
+    object-fit: cover;
+    background: var(--surface-tertiary);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-4xl);
+    color: var(--color-oak-400);
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+  .chef-name {
+    font-weight: 600;
+    font-size: var(--text-xl);
+    margin-top: var(--space-5);
+  }
+  .chef-specialty {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    font-style: italic;
+    margin-top: var(--space-1);
+  }
+  .chef-socials {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+  .chef-socials a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .chef-socials a:hover { color: var(--color-barrel-500); }
+
+  /* Testimonial Card */
+  .testimonial-card {
+    padding: var(--space-8);
+    border-left: 4px solid var(--color-barrel-300);
+    position: relative;
+  }
+  .testimonial-quote-mark {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: var(--color-barrel-200);
+    line-height: 1;
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-size: var(--text-md);
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    position: relative;
+    z-index: 1;
+    padding-top: var(--space-6);
+  }
+  .testimonial-attr {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  .testimonial-avatar {
+    width: var(--avatar-md);
+    height: var(--avatar-md);
+    border-radius: var(--radius-full);
+    background: var(--color-barrel-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xl);
+  }
+  .testimonial-name {
+    font-weight: 600;
+    font-size: var(--text-base);
+  }
+
+  /* ============================================================
+     5. STAR RATING
+     ============================================================ */
+  .stars {
+    display: inline-flex;
+    gap: var(--star-gap);
+  }
+  .star {
+    width: var(--star-size);
+    height: var(--star-size);
+    color: var(--star-filled);
+  }
+  .star.empty { color: var(--star-empty); }
+  .star svg {
+    width: 100%;
+    height: 100%;
+  }
+  .rating-count {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    margin-left: 4px;
+  }
+
+  /* ============================================================
+     6. BADGES
+     ============================================================ */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+  .badge-default {
+    background: var(--color-oak-150);
+    color: var(--text-secondary);
+  }
+  .badge-brand {
+    background: var(--color-barrel-100);
+    color: var(--color-barrel-700);
+  }
+  .badge-success {
+    background: var(--color-sage-100);
+    color: var(--color-sage-700);
+  }
+  .badge-spicy {
+    background: var(--color-ember-100);
+    color: var(--color-ember-700);
+  }
+  .badge-outline {
+    background: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+  }
+  .badge-dot::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+  }
+
+  /* ============================================================
+     7. FORM INPUTS
+     ============================================================ */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .input-label {
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+  .input-label .required { color: var(--color-ember-400); margin-left: 2px; }
+
+  .input {
+    height: var(--input-height);
+    background: var(--input-bg);
+    border: 1px solid var(--border-default);
+    border-radius: var(--input-radius);
+    padding: 0 var(--input-padding-x);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    transition: border-color var(--duration-fast) var(--ease-default),
+                box-shadow var(--duration-fast) var(--ease-default);
+    outline: none;
+    width: 100%;
+  }
+  .input::placeholder { color: var(--text-disabled); }
+  .input:hover { border-color: var(--border-strong); }
+  .input:focus {
+    border-color: var(--color-barrel-400);
+    box-shadow: 0 0 0 3px rgba(232, 164, 53, 0.15);
+  }
+  .input-error {
+    border-color: var(--color-ember-400);
+  }
+  .input-error:focus {
+    box-shadow: 0 0 0 3px rgba(224, 112, 64, 0.10);
+  }
+
+  .input-helper {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+  }
+  .input-error-msg {
+    font-size: var(--text-sm);
+    color: var(--color-ember-500);
+  }
+
+  textarea.input {
+    height: auto;
+    min-height: 120px;
+    padding: var(--space-3) var(--input-padding-x);
+    resize: vertical;
+    line-height: var(--leading-normal);
+  }
+
+  /* ============================================================
+     8. SHADOWS DEMO
+     ============================================================ */
+  .shadow-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: end;
+  }
+  .shadow-box {
+    width: 100px;
+    height: 100px;
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+
+  /* ============================================================
+     9. SPACING SCALE DEMO
+     ============================================================ */
+  .spacing-demo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .spacing-bar-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .spacing-bar {
+    height: 20px;
+    background: var(--color-barrel-200);
+    border-radius: var(--radius-sm);
+    min-width: 4px;
+  }
+  .spacing-bar-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ============================================================
+     10. RADIUS DEMO
+     ============================================================ */
+  .radius-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: end;
+  }
+  .radius-box {
+    width: 80px;
+    height: 80px;
+    background: var(--color-barrel-100);
+    border: 2px solid var(--color-barrel-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-barrel-700);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ============================================================
+     11. SECTION HEADER COMPONENT
+     ============================================================ */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+  .section-header-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+  }
+  .section-header-bar {
+    width: 60px;
+    height: 3px;
+    background: var(--color-barrel-400);
+    border-radius: var(--radius-full);
+    margin: var(--space-4) auto 0;
+  }
+  .section-header-sub {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    max-width: 50ch;
+    margin: var(--space-3) auto 0;
+  }
+
+  /* ============================================================
+     12. CTA BANNER
+     ============================================================ */
+  .cta-banner {
+    background: var(--color-oak-900);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-16) var(--space-12);
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    color: var(--text-on-inverse);
+  }
+  .cta-banner-content { flex: 1; }
+  .cta-banner-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    color: var(--color-oak-100);
+  }
+  .cta-banner-text {
+    font-size: var(--text-md);
+    color: var(--color-oak-400);
+    margin-top: var(--space-4);
+    max-width: 40ch;
+  }
+  .cta-banner .btn {
+    margin-top: var(--space-6);
+  }
+  .cta-banner-visual {
+    font-size: 6rem;
+    flex-shrink: 0;
+  }
+
+  /* ============================================================
+     13. TOAST
+     ============================================================ */
+  .toast {
+    width: 360px;
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+  .toast-icon { font-size: var(--text-xl); flex-shrink: 0; margin-top: 2px; }
+  .toast-success .toast-icon { color: var(--color-sage-400); }
+  .toast-error .toast-icon { color: var(--color-ember-400); }
+  .toast-body { flex: 1; }
+  .toast-title { font-weight: 600; font-size: var(--text-base); }
+  .toast-msg { font-size: var(--text-sm); color: var(--text-secondary); margin-top: 2px; }
+  .toast-close {
+    color: var(--text-tertiary);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    background: none;
+    border: none;
+    padding: var(--space-1);
+  }
+
+  /* ============================================================
+     UTILITY
+     ============================================================ */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .cta-banner { flex-direction: column; padding: var(--space-8) var(--space-6); }
+    .type-display { font-size: var(--text-4xl); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="preview-nav">
+  <h1>Oak <span>&</span> Barrel</h1>
+  <a href="#colors">Colors</a>
+  <a href="#typography">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#cards">Cards</a>
+  <a href="#forms">Forms</a>
+  <a href="#components">Components</a>
+</nav>
+
+<!-- ============================================================
+     COLORS
+     ============================================================ -->
+<section class="preview-section" id="colors">
+  <div class="preview-label">01 / Color Palette</div>
+  <div class="preview-title">Colors</div>
+  <p class="preview-desc">
+    Warm, golden-undertone palette inspired by aged oak, amber spirits,
+    and fresh herbs. Shadows use <code>rgba(42,30,12,…)</code> — never neutral gray.
+  </p>
+
+  <div class="swatch-group">
+    <div class="swatch-group-title">Barrel Gold — Primary</div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFF7E6"></div><div class="swatch-label">50</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFECC4"></div><div class="swatch-label">100</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFDB8A"></div><div class="swatch-label">200</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F5C45C"></div><div class="swatch-label">300</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8A435"></div><div class="swatch-label">400</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D4891A"></div><div class="swatch-label">500</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B56E0F"></div><div class="swatch-label">600</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#8F5409"></div><div class="swatch-label">700</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#6B3E06"></div><div class="swatch-label">800</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#4A2A04"></div><div class="swatch-label">900</div></div>
+  </div>
+
+  <div class="swatch-group">
+    <div class="swatch-group-title">Oak — Warm Neutrals</div>
+    <div class="swatch"><div class="swatch-color" style="background:#FDFBF7"></div><div class="swatch-label">50</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F9F4EB"></div><div class="swatch-label">100</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F5EDE0"></div><div class="swatch-label">150</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#EDE3D3"></div><div class="swatch-label">200</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#DDD0B8"></div><div class="swatch-label">300</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C4B495"></div><div class="swatch-label">400</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#A89474"></div><div class="swatch-label">500</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#8A7558"></div><div class="swatch-label">600</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#6B5940"></div><div class="swatch-label">700</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#4A3D2C"></div><div class="swatch-label">800</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2C2418"></div><div class="swatch-label">900</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1A150E"></div><div class="swatch-label">950</div></div>
+  </div>
+
+  <div class="swatch-group">
+    <div class="swatch-group-title">Sage — Accent</div>
+    <div class="swatch"><div class="swatch-color" style="background:#F2F7F2"></div><div class="swatch-label">50</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E0ECE0"></div><div class="swatch-label">100</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C1D9C1"></div><div class="swatch-label">200</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#97BC97"></div><div class="swatch-label">300</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#6E9E6E"></div><div class="swatch-label">400</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#527D52"></div><div class="swatch-label">500</div></div>
+  </div>
+
+  <div class="swatch-group">
+    <div class="swatch-group-title">Ember — Accent</div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFF5F0"></div><div class="swatch-label">50</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFE4D6"></div><div class="swatch-label">100</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFC4A8"></div><div class="swatch-label">200</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F49A6E"></div><div class="swatch-label">300</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E07040"></div><div class="swatch-label">400</div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C4521F"></div><div class="swatch-label">500</div></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TYPOGRAPHY
+     ============================================================ -->
+<section class="preview-section" id="typography">
+  <div class="preview-label">02 / Typography</div>
+  <div class="preview-title">Type Scale</div>
+  <p class="preview-desc">
+    Playfair Display for emotional headings. DM Sans for clear body copy.
+    JetBrains Mono for prices and data.
+  </p>
+
+  <div class="type-specimen">
+    <div class="meta">Playfair Display 900 / 4.768rem / Display</div>
+    <div class="type-display">Oak & Barrel</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">Playfair Display 700 / 3.815rem / H1</div>
+    <div class="type-h1">We Serve The Taste You Love</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">Playfair Display 700 / 3.052rem / H2</div>
+    <div class="type-h2">Popular Dishes</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">Playfair Display 700 / 2.441rem / H3</div>
+    <div class="type-h3">Our Regular Menu Pack</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">DM Sans 600 / 1.953rem / H4</div>
+    <div class="type-h4">Reserve Your Table Today</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">DM Sans 600 / 1.563rem / H5 — Uppercase</div>
+    <div class="type-h5">Meet Our Chefs</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">DM Sans 400 / 1rem / Body</div>
+    <div class="type-body">
+      Slow-roasted lamb shoulder with rosemary jus, served alongside
+      roasted root vegetables and creamy garlic mashed potatoes. Each dish
+      is crafted with locally sourced ingredients and cooked with patience.
+    </div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="meta">JetBrains Mono 500 / 1.25rem / Price</div>
+    <div class="type-price">$24.50</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SPACING
+     ============================================================ -->
+<section class="preview-section" id="spacing">
+  <div class="preview-label">03 / Spacing</div>
+  <div class="preview-title">Spacing Scale</div>
+  <p class="preview-desc">4px base grid. Consistent rhythm across every component.</p>
+
+  <div class="spacing-demo">
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-1 (4px)</div><div class="spacing-bar" style="width:4px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-2 (8px)</div><div class="spacing-bar" style="width:8px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-3 (12px)</div><div class="spacing-bar" style="width:12px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-4 (16px)</div><div class="spacing-bar" style="width:16px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-6 (24px)</div><div class="spacing-bar" style="width:24px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-8 (32px)</div><div class="spacing-bar" style="width:32px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-12 (48px)</div><div class="spacing-bar" style="width:48px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-16 (64px)</div><div class="spacing-bar" style="width:64px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-24 (96px)</div><div class="spacing-bar" style="width:96px"></div></div>
+    <div class="spacing-bar-row"><div class="spacing-bar-label">space-32 (128px)</div><div class="spacing-bar" style="width:128px"></div></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BORDERS & RADII / SHADOWS
+     ============================================================ -->
+<section class="preview-section">
+  <div class="preview-label">04 / Shape & Depth</div>
+  <div class="preview-title">Border Radii</div>
+  <p class="preview-desc">Soft, rounded corners throughout — never sharp.</p>
+
+  <div class="radius-demo" style="margin-bottom: var(--space-12);">
+    <div class="radius-box" style="border-radius:var(--radius-sm)">sm<br>6px</div>
+    <div class="radius-box" style="border-radius:var(--radius-md)">md<br>10px</div>
+    <div class="radius-box" style="border-radius:var(--radius-lg)">lg<br>16px</div>
+    <div class="radius-box" style="border-radius:var(--radius-xl)">xl<br>24px</div>
+    <div class="radius-box" style="border-radius:var(--radius-2xl)">2xl<br>32px</div>
+    <div class="radius-box" style="border-radius:var(--radius-full)">full<br>pill</div>
+  </div>
+
+  <div class="preview-title" style="margin-top:var(--space-12)">Shadows</div>
+  <p class="preview-desc">Warm-tinted shadows with golden undertone. Hover the boxes.</p>
+
+  <div class="shadow-demo">
+    <div class="shadow-box" style="box-shadow:var(--shadow-xs)">xs</div>
+    <div class="shadow-box" style="box-shadow:var(--shadow-sm)">sm</div>
+    <div class="shadow-box" style="box-shadow:var(--shadow-md)">md</div>
+    <div class="shadow-box" style="box-shadow:var(--shadow-lg)">lg</div>
+    <div class="shadow-box" style="box-shadow:var(--shadow-xl)">xl</div>
+    <div class="shadow-box" style="box-shadow:var(--shadow-2xl)">2xl</div>
+    <div class="shadow-box" style="box-shadow:var(--shadow-brand)">brand</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUTTONS
+     ============================================================ -->
+<section class="preview-section" id="buttons">
+  <div class="preview-label">05 / Interactive</div>
+  <div class="preview-title">Buttons</div>
+  <p class="preview-desc">Pill-shaped, warm, and confident. Three variants, three sizes.</p>
+
+  <div style="display:flex;flex-direction:column;gap:var(--space-8)">
+    <div>
+      <div class="preview-label" style="margin-bottom:var(--space-3)">Primary</div>
+      <div class="preview-row">
+        <button class="btn btn-primary btn-sm">Small CTA</button>
+        <button class="btn btn-primary">Order Now</button>
+        <button class="btn btn-primary btn-lg">Reserve Your Table</button>
+        <button class="btn btn-primary btn-disabled">Disabled</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-label" style="margin-bottom:var(--space-3)">Secondary</div>
+      <div class="preview-row">
+        <button class="btn btn-secondary btn-sm">View Menu</button>
+        <button class="btn btn-secondary">View Full Menu</button>
+        <button class="btn btn-secondary btn-lg">Learn More</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="preview-label" style="margin-bottom:var(--space-3)">Ghost</div>
+      <div class="preview-row">
+        <button class="btn btn-ghost btn-sm">See All</button>
+        <button class="btn btn-ghost">View Details</button>
+        <button class="btn btn-ghost btn-lg">Read More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BADGES
+     ============================================================ -->
+<section class="preview-section">
+  <div class="preview-label">06 / Labels</div>
+  <div class="preview-title">Badges & Tags</div>
+  <p class="preview-desc">Small labels for categorization, status, and dietary info.</p>
+
+  <div class="preview-row" style="gap:var(--space-3)">
+    <span class="badge badge-default">Default</span>
+    <span class="badge badge-brand">Featured</span>
+    <span class="badge badge-success badge-dot">Vegetarian</span>
+    <span class="badge badge-spicy badge-dot">Spicy</span>
+    <span class="badge badge-outline">Gluten Free</span>
+    <span class="badge badge-success badge-dot">Available</span>
+    <span class="badge badge-spicy badge-dot">Sold Out</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     CARDS
+     ============================================================ -->
+<section class="preview-section" id="cards">
+  <div class="preview-label">07 / Content</div>
+  <div class="preview-title">Cards</div>
+  <p class="preview-desc">The primary content containers. Hover to see elevation shift.</p>
+
+  <!-- Section Header Demo -->
+  <div class="section-header" style="margin-top:var(--space-10)">
+    <div class="section-header-title">Popular Dishes</div>
+    <div class="section-header-bar"></div>
+    <div class="section-header-sub">
+      Handcrafted with the finest locally sourced ingredients
+    </div>
+  </div>
+
+  <!-- Dish Cards -->
+  <div class="grid-4">
+    <div class="card dish-card">
+      <div class="dish-card-img" style="background:linear-gradient(135deg, #F5EDE0, #EDE3D3)">&#127857;</div>
+      <div class="dish-card-body">
+        <div class="dish-card-name">Grilled Ribeye Steak</div>
+        <div class="dish-card-rating">
+          <span class="stars">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star empty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+          <span class="rating-count">4.8</span>
+        </div>
+        <div class="dish-card-price">$32</div>
+      </div>
+    </div>
+
+    <div class="card dish-card">
+      <div class="dish-card-img" style="background:linear-gradient(135deg, #F5EDE0, #EDE3D3)">&#127839;</div>
+      <div class="dish-card-body">
+        <div class="dish-card-name">French Fries</div>
+        <div class="dish-card-rating">
+          <span class="stars">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star empty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+          <span class="rating-count">4.3</span>
+        </div>
+        <div class="dish-card-price">$8</div>
+      </div>
+    </div>
+
+    <div class="card dish-card">
+      <div class="dish-card-img" style="background:linear-gradient(135deg, #F5EDE0, #EDE3D3)">&#127831;</div>
+      <div class="dish-card-body">
+        <div class="dish-card-name">Chicken Shawarma</div>
+        <div class="dish-card-rating">
+          <span class="stars">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+          <span class="rating-count">5.0</span>
+        </div>
+        <div class="dish-card-price">$18</div>
+      </div>
+    </div>
+
+    <div class="card dish-card">
+      <div class="dish-card-img" style="background:linear-gradient(135deg, #F5EDE0, #EDE3D3)">&#127835;</div>
+      <div class="dish-card-body">
+        <div class="dish-card-name">Fish Curry</div>
+        <div class="dish-card-rating">
+          <span class="stars">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star empty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+          <span class="rating-count">4.6</span>
+        </div>
+        <div class="dish-card-price">$22</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chef Cards -->
+  <div class="section-header" style="margin-top:var(--space-16)">
+    <div class="section-header-title">Meet Our Chefs</div>
+    <div class="section-header-bar"></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card chef-card">
+      <div class="chef-avatar">&#129489;&#8205;&#127859;</div>
+      <div class="chef-name">Dominick Raynoth</div>
+      <div class="chef-specialty">Executive Chef &middot; French Cuisine</div>
+      <div class="chef-socials">
+        <a href="#">IG</a>
+        <a href="#">TW</a>
+        <a href="#">LI</a>
+      </div>
+    </div>
+    <div class="card chef-card">
+      <div class="chef-avatar">&#128105;&#8205;&#127859;</div>
+      <div class="chef-name">Esther Howard</div>
+      <div class="chef-specialty">Pastry Chef &middot; Mediterranean</div>
+      <div class="chef-socials">
+        <a href="#">IG</a>
+        <a href="#">TW</a>
+        <a href="#">LI</a>
+      </div>
+    </div>
+    <div class="card chef-card">
+      <div class="chef-avatar">&#129489;&#8205;&#127859;</div>
+      <div class="chef-name">Keilin McKinney</div>
+      <div class="chef-specialty">Sous Chef &middot; Asian Fusion</div>
+      <div class="chef-socials">
+        <a href="#">IG</a>
+        <a href="#">TW</a>
+        <a href="#">LI</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial Cards -->
+  <div class="section-header" style="margin-top:var(--space-16)">
+    <div class="section-header-title">What Our Customers Say</div>
+    <div class="section-header-bar"></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card testimonial-card">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <div class="testimonial-text">
+        The grilled ribeye was cooked to absolute perfection. Best steak
+        I've had in this city, without question.
+      </div>
+      <div class="testimonial-attr">
+        <div class="testimonial-avatar">&#128100;</div>
+        <div>
+          <div class="testimonial-name">James Mitchell</div>
+          <span class="stars" style="margin-top:4px">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card testimonial-card">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <div class="testimonial-text">
+        The atmosphere is incredibly warm and inviting. Every visit feels
+        like coming home to a five-star meal.
+      </div>
+      <div class="testimonial-attr">
+        <div class="testimonial-avatar">&#128100;</div>
+        <div>
+          <div class="testimonial-name">Sarah Williams</div>
+          <span class="stars" style="margin-top:4px">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card testimonial-card">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <div class="testimonial-text">
+        Their fish curry is a revelation. Perfect balance of spice and
+        flavor. We've been coming back every week since.
+      </div>
+      <div class="testimonial-attr">
+        <div class="testimonial-avatar">&#128100;</div>
+        <div>
+          <div class="testimonial-name">Robert Chen</div>
+          <span class="stars" style="margin-top:4px">
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="star empty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FORMS
+     ============================================================ -->
+<section class="preview-section" id="forms">
+  <div class="preview-label">08 / Forms</div>
+  <div class="preview-title">Input Fields</div>
+  <p class="preview-desc">Clean, warm inputs with amber focus rings.</p>
+
+  <div class="grid-2" style="max-width:640px">
+    <div class="input-group">
+      <label class="input-label">Full Name <span class="required">*</span></label>
+      <input type="text" class="input" placeholder="Your name">
+    </div>
+    <div class="input-group">
+      <label class="input-label">Email</label>
+      <input type="email" class="input" placeholder="your@email.com">
+    </div>
+    <div class="input-group">
+      <label class="input-label">Phone</label>
+      <input type="tel" class="input" placeholder="+1 (555) 000-0000">
+      <span class="input-helper">We'll only use this for your reservation</span>
+    </div>
+    <div class="input-group">
+      <label class="input-label">Party Size</label>
+      <input type="number" class="input" placeholder="2 guests" min="1" max="20">
+    </div>
+    <div class="input-group" style="grid-column:1/-1">
+      <label class="input-label">Error State Example</label>
+      <input type="text" class="input input-error" value="invalid@">
+      <span class="input-error-msg">Please enter a valid email address</span>
+    </div>
+    <div class="input-group" style="grid-column:1/-1">
+      <label class="input-label">Special Requests</label>
+      <textarea class="input" placeholder="Any dietary requirements or special requests?"></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER + TOASTS
+     ============================================================ -->
+<section class="preview-section" id="components">
+  <div class="preview-label">09 / Compositions</div>
+  <div class="preview-title">CTA Banner</div>
+  <p class="preview-desc">Dark, dramatic call-to-action for reservations.</p>
+
+  <div class="cta-banner" style="margin-top:var(--space-8)">
+    <div class="cta-banner-content">
+      <div class="cta-banner-title">Do You Have Any Dinner Plan Today? Reserve Your Table</div>
+      <div class="cta-banner-text">
+        Experience the warmth of Oak & Barrel. Book your table now and
+        let us craft an unforgettable evening for you.
+      </div>
+      <button class="btn btn-primary btn-lg" style="margin-top:var(--space-6)">Reserve Now &rarr;</button>
+    </div>
+    <div class="cta-banner-visual">&#127860;</div>
+  </div>
+
+  <div class="preview-title" style="margin-top:var(--space-16)">Toasts</div>
+  <p class="preview-desc">Notification toasts for user feedback.</p>
+
+  <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-6)">
+    <div class="toast toast-success">
+      <div class="toast-icon">&#9989;</div>
+      <div class="toast-body">
+        <div class="toast-title">Reservation Confirmed</div>
+        <div class="toast-msg">Your table for 4 on March 15 at 7:00 PM is booked.</div>
+      </div>
+      <button class="toast-close">&times;</button>
+    </div>
+    <div class="toast toast-error">
+      <div class="toast-icon">&#10060;</div>
+      <div class="toast-body">
+        <div class="toast-title">Booking Failed</div>
+        <div class="toast-msg">That time slot is no longer available. Please try another.</div>
+      </div>
+      <button class="toast-close">&times;</button>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
