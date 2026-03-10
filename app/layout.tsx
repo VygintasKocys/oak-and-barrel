@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ReservationProvider } from "./components/ReservationContext";
 import { ReservationModal } from "./components/ReservationModal";
+import { N8nChat } from "./components/N8nChat";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -48,6 +49,7 @@ export default function RootLayout({
           <main className="pt-[4.5rem]">{children}</main>
           <Footer />
           <ReservationModal />
+          <N8nChat />
         </ReservationProvider>
       </body>
     </html>

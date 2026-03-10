@@ -189,6 +189,82 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* — n8n Chat Widget — */
+:root {
+  /* Colors */
+  --chat--color--primary: #E8A435;
+  --chat--color--primary-shade-50: #D4891A;
+  --chat--color--primary--shade-100: #B56E0F;
+  --chat--color--secondary: #F5C45C;
+  --chat--color-secondary-shade-50: #E8A435;
+  --chat--color-white: #FDFBF7;
+  --chat--color-light: #F9F4EB;
+  --chat--color-light-shade-50: #EDE3D3;
+  --chat--color-light-shade-100: #DDD0B8;
+  --chat--color-medium: #C4B495;
+  --chat--color-dark: #2C2418;
+  --chat--color-disabled: #C4B495;
+  --chat--color-typing: #8A7558;
+
+  /* Typography */
+  --chat--font-family: var(--font-dm-sans), 'Segoe UI', system-ui, sans-serif;
+
+  /* Layout */
+  --chat--border-radius: 10px;
+  --chat--spacing: 1rem;
+  --chat--transition-duration: 0.15s;
+
+  /* Window */
+  --chat--window--width: 24rem;
+  --chat--window--height: 38rem;
+  --chat--window--border-radius: 1.5rem;
+  --chat--window--border: 1px solid #EDE3D3;
+  --chat--window--z-index: 350;
+
+  /* Header */
+  --chat--header--background: #2C2418;
+  --chat--header--color: #F9F4EB;
+  --chat--header--padding: 1.25rem 1.5rem;
+  --chat--header--border-bottom: none;
+  --chat--heading--font-size: 1.5rem;
+  --chat--subtitle--font-size: 0.875rem;
+  --chat--subtitle--line-height: 1.6;
+
+  /* Toggle button */
+  --chat--toggle--background: #E8A435;
+  --chat--toggle--hover--background: #D4891A;
+  --chat--toggle--active--background: #B56E0F;
+  --chat--toggle--color: #1A150E;
+  --chat--toggle--size: 3.25rem;
+  --chat--toggle--border-radius: 50%;
+
+  /* Bot messages */
+  --chat--message--bot--background: #F5EDE0;
+  --chat--message--bot--color: #1A150E;
+  --chat--message--bot--border: none;
+  --chat--message--font-size: 1rem;
+  --chat--message--border-radius: 10px;
+  --chat--message-line-height: 1.6;
+  --chat--message--padding: 0.75rem 1rem;
+
+  /* User messages */
+  --chat--message--user--background: #E8A435;
+  --chat--message--user--color: #1A150E;
+  --chat--message--user--border: none;
+
+  /* Input */
+  --chat--textarea--height: 2.75rem;
+  --chat--input--border: 1px solid #EDE3D3;
+  --chat--input--border-radius: 10px;
+  --chat--input--border-active: 1px solid #E8A435;
+  --chat--input--background: #FFFFFF;
+  --chat--input--text-color: #1A150E;
+  --chat--input--font-size: 1rem;
+  --chat--input--placeholder--font-size: 1rem;
+  --chat--input--padding: 0.75rem;
+  --chat--input--line-height: 1.6;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

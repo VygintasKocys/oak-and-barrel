@@ -6,11 +6,20 @@ import { useReservation } from "./ReservationContext";
 export function ReservationModal() {
   const { isOpen, setIsOpen } = useReservation();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [partySize, setPartySize] = useState("");
+  const [dateTime, setDateTime] = useState("");
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) {
       setSubmitted(false);
+      setError("");
+      setName("");
+      setPartySize("");
+      setDateTime("");
     }
   }, [isOpen]);
 
@@ -28,12 +37,35 @@ export function ReservationModal() {
     };
   }, [isOpen, setIsOpen]);
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, partySize: Number(partySize), dateTime }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to create reservation.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (!isOpen) return null;
+
+  const inputClass =
+    "w-full h-11 rounded-[10px] border border-oak-200 bg-white px-4 text-base text-oak-950 placeholder:text-oak-400 focus:border-barrel-400 focus:outline-none focus:ring-[3px] focus:ring-barrel-400/15 transition-colors";
 
   return (
     <div
@@ -90,13 +122,15 @@ export function ReservationModal() {
                 {/* Name */}
                 <div>
                   <label className="block text-[0.833rem] font-medium text-oak-700 mb-1.5">
-                    Full Name
+                    Name
                   </label>
                   <input
                     type="text"
                     required
                     placeholder="Your name"
-                    className="w-full h-11 rounded-[10px] border border-oak-200 bg-white px-4 text-base text-oak-950 placeholder:text-oak-400 focus:border-barrel-400 focus:outline-none focus:ring-[3px] focus:ring-barrel-400/15 transition-colors"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className={inputClass}
                   />
                 </div>
                 {/* Party Size */}
@@ -106,7 +140,9 @@ export function ReservationModal() {
                   </label>
                   <select
                     required
-                    className="w-full h-11 rounded-[10px] border border-oak-200 bg-white px-4 text-base text-oak-950 focus:border-barrel-400 focus:outline-none focus:ring-[3px] focus:ring-barrel-400/15 transition-colors appearance-none"
+                    value={partySize}
+                    onChange={(e) => setPartySize(e.target.value)}
+                    className={`${inputClass} appearance-none`}
                   >
                     <option value="">Select</option>
                     {Array.from({ length: 10 }, (_, i) => (
@@ -118,45 +154,30 @@ export function ReservationModal() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Date */}
-                <div>
-                  <label className="block text-[0.833rem] font-medium text-oak-700 mb-1.5">
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    className="w-full h-11 rounded-[10px] border border-oak-200 bg-white px-4 text-base text-oak-950 focus:border-barrel-400 focus:outline-none focus:ring-[3px] focus:ring-barrel-400/15 transition-colors"
-                  />
-                </div>
-                {/* Time */}
-                <div>
-                  <label className="block text-[0.833rem] font-medium text-oak-700 mb-1.5">
-                    Time
-                  </label>
-                  <select
-                    required
-                    className="w-full h-11 rounded-[10px] border border-oak-200 bg-white px-4 text-base text-oak-950 focus:border-barrel-400 focus:outline-none focus:ring-[3px] focus:ring-barrel-400/15 transition-colors appearance-none"
-                  >
-                    <option value="">Select time</option>
-                    {[
-                      "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
-                      "1:00 PM", "1:30 PM", "2:00 PM", "5:00 PM",
-                      "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM",
-                      "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM",
-                    ].map((t) => (
-                      <option key={t} value={t}>{t}</option>
-                    ))}
-                  </select>
-                </div>
+              {/* Date & Time */}
+              <div>
+                <label className="block text-[0.833rem] font-medium text-oak-700 mb-1.5">
+                  Date & Time
+                </label>
+                <input
+                  type="datetime-local"
+                  required
+                  value={dateTime}
+                  onChange={(e) => setDateTime(e.target.value)}
+                  className={inputClass}
+                />
               </div>
+
+              {error && (
+                <p className="text-red-600 text-sm">{error}</p>
+              )}
 
               <button
                 type="submit"
-                className="w-full h-[3.25rem] rounded-full bg-barrel-400 text-[1.125rem] font-semibold text-oak-950 hover:bg-barrel-500 hover:shadow-[var(--shadow-brand)] active:bg-barrel-600 active:scale-[0.98] transition-all duration-150"
+                disabled={loading}
+                className="w-full h-[3.25rem] rounded-full bg-barrel-400 text-[1.125rem] font-semibold text-oak-950 hover:bg-barrel-500 hover:shadow-[var(--shadow-brand)] active:bg-barrel-600 active:scale-[0.98] transition-all duration-150 disabled:opacity-60 disabled:pointer-events-none"
               >
-                Reserve Table
+                {loading ? "Reserving..." : "Reserve Table"}
               </button>
             </form>
           </>

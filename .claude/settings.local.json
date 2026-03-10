@@ -3,7 +3,8 @@
     "allow": [
       "Bash(cd C:/claude-code/oak-and-barrel && node -e \"require\\('sharp'\\)\" 2>&1 || echo \"sharp not available\")",
       "Bash(cd C:/claude-code/oak-and-barrel && node scripts/download-images.mjs)",
-      "Bash(cd C:/claude-code/oak-and-barrel && npx next build 2>&1 | tail -20)"
+      "Bash(cd C:/claude-code/oak-and-barrel && npx next build 2>&1 | tail -20)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
